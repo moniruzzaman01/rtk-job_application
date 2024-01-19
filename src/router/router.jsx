@@ -14,15 +14,15 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/jobs/internship",
+        path: "/jobs/:jobType",
         element: <Home />,
       },
       {
-        path: "/jobs/fulltime",
+        path: "/jobs/:jobType",
         element: <Home />,
       },
       {
-        path: "/jobs/remote",
+        path: "/jobs/:jobType",
         element: <Home />,
       },
       {
