@@ -23,7 +23,6 @@ export default function Home() {
         </div>
 
         <div className="jobs-list">
-          {/* <!-- Single Job 1--> */}
           <div className="lws-single-job">
             <div className="flex-1 min-w-0">
               <h2 className="lws-title">Back End Developer</h2>
@@ -59,7 +58,6 @@ export default function Home() {
               </span>
             </div>
           </div>
-          {/* <!-- Single Job 1--> */}
         </div>
       </main>
     </div>
