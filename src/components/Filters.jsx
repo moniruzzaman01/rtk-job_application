@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { setSearchText } from "../features/filters/filtersSlice";
+import { setSearchText, setSort } from "../features/filters/filtersSlice";
 
 export default function Filters() {
   const dispatch = useDispatch();
@@ -16,10 +16,15 @@ export default function Filters() {
           onChange={(e) => dispatch(setSearchText(e.target.value))}
         />
       </div>
-      <select id="lws-sort" name="sort" className="flex-1">
-        <option>Default</option>
-        <option>Salary (Low to High)</option>
-        <option>Salary (High to Low)</option>
+      <select
+        onChange={(e) => dispatch(setSort(e.target.value))}
+        id="lws-sort"
+        name="sort"
+        className="flex-1"
+      >
+        <option value={""}>Default</option>
+        <option value={"low"}>Salary (Low to High)</option>
+        <option value={"high"}>Salary (High to Low)</option>
       </select>
     </div>
   );

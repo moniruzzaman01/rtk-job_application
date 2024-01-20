@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   searchText: "",
-  sort: "",
+  isSort: "",
 };
 
 const filtersSlice = createSlice({
@@ -12,8 +12,11 @@ const filtersSlice = createSlice({
     setSearchText: (state, action) => {
       state.searchText = action.payload;
     },
+    setSort: (state, action) => {
+      state.isSort = action.payload;
+    },
   },
 });
 
 export default filtersSlice.reducer;
-export const { setSearchText } = filtersSlice.actions;
+export const { setSearchText, setSort } = filtersSlice.actions;

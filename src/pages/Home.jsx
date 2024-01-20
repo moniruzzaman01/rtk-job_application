@@ -8,7 +8,7 @@ export default function Home() {
   const { jobs, isLoading, isError, error } = useSelector(
     (state) => state.jobs
   );
-  const { searchText } = useSelector((state) => state.filters);
+  const { searchText, isSort } = useSelector((state) => state.filters);
 
   let heading;
   if (!jobType) {
@@ -48,6 +48,15 @@ export default function Home() {
           return true;
         } else if (job.title.toLowerCase().includes(searchText)) {
           return true;
+        }
+      })
+      .sort((a, b) => {
+        if (!isSort) {
+          return 1;
+        } else if (isSort == "low") {
+          return a.salary - b.salary;
+        } else if (isSort == "high") {
+          return b.salary - a.salary;
         }
       })
       .map((job, key) => <Job key={key} job={job} />);
