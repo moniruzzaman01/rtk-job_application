@@ -10,6 +10,12 @@ export default function Job({ job }) {
   const handleJobDelete = (id) => {
     dispatch(removeAJob(id));
   };
+
+  let color =
+    (type == "Full Time" && "!text-[#FF8A00]") ||
+    (type == "Internship" && "!text-[#FF5757]") ||
+    (type == "Remote" && "!text-[#56E5C4]");
+
   return (
     <div className="lws-single-job">
       <div className="flex-1 min-w-0">
@@ -17,7 +23,7 @@ export default function Job({ job }) {
         <div className="job-footers">
           <div className="lws-type">
             {/* <!-- Fulltime - #FF8A00,  --><!-- Internship - #FF5757,  --><!-- Remote - #56E5C4,  --> */}
-            <i className="fa-solid fa-stop !text-[#FF8A00] text-lg mr-1.5"></i>
+            <i className={`fa-solid fa-stop ${color} text-lg mr-1.5`}></i>
             {type}
           </div>
           <div className="lws-salary">

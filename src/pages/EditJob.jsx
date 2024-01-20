@@ -11,7 +11,6 @@ export default function EditJob() {
   const navigate = useNavigate();
 
   const handleEditForm = (data) => {
-    console.log(data);
     dispatch(editJob({ jobId, data }));
     navigate("/");
   };

@@ -67,7 +67,6 @@ const jobsSlice = createSlice({
         state.isError = false;
       })
       .addCase(editJob.fulfilled, (state, action) => {
-        console.log(action);
         state.isLoading = false;
         state.isError = false;
         state.jobs = state.jobs.map((job) => {

@@ -8,7 +8,6 @@ export default function AddJob() {
   const dispatch = useDispatch();
 
   const handleAddForm = (data) => {
-    console.log(data);
     dispatch(addAJob(data));
     navigate("/");
   };
