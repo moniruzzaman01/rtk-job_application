@@ -1,8 +1,16 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { loadAllJobs } from "./features/jobs/jobsSlice";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadAllJobs());
+  }, [dispatch]);
   return (
     <>
       <Navbar />
