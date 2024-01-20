@@ -1,4 +1,9 @@
+import { useDispatch } from "react-redux";
+import { setSearchText } from "../features/filters/filtersSlice";
+
 export default function Filters() {
+  const dispatch = useDispatch();
+
   return (
     <div className="flex gap-4">
       <div className="search-field group flex-1">
@@ -8,6 +13,7 @@ export default function Filters() {
           placeholder="Search Job"
           className="search-input"
           id="lws-searchJob"
+          onChange={(e) => dispatch(setSearchText(e.target.value))}
         />
       </div>
       <select id="lws-sort" name="sort" className="flex-1">

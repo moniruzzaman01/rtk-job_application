@@ -8,6 +8,7 @@ export default function Home() {
   const { jobs, isLoading, isError, error } = useSelector(
     (state) => state.jobs
   );
+  const { searchText } = useSelector((state) => state.filters);
 
   let heading;
   if (!jobType) {
@@ -39,6 +40,13 @@ export default function Home() {
         if (!jobType) {
           return true;
         } else if (job.type.split(" ").join("").toLowerCase() == jobType) {
+          return true;
+        }
+      })
+      .filter((job) => {
+        if (!searchText) {
+          return true;
+        } else if (job.title.toLowerCase().includes(searchText)) {
           return true;
         }
       })
