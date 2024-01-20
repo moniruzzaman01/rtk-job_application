@@ -34,7 +34,15 @@ export default function Home() {
       </h1>
     );
   } else {
-    content = jobs.map((job, key) => <Job key={key} job={job} />);
+    content = jobs
+      .filter((job) => {
+        if (!jobType) {
+          return true;
+        } else if (job.type.split(" ").join("").toLowerCase() == jobType) {
+          return true;
+        }
+      })
+      .map((job, key) => <Job key={key} job={job} />);
   }
 
   return (
