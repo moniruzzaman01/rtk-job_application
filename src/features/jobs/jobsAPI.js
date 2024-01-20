@@ -14,3 +14,8 @@ export const updateJob = async (jobId, data) => {
   const response = await axiosInstance.patch(`/jobs/${jobId}`, data);
   return response.data;
 };
+
+export const insertAJob = async (data) => {
+  const response = await axiosInstance.post(`/jobs`, data);
+  return response.data;
+};
