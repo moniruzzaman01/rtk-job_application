@@ -1,7 +1,8 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 export default function Job({ job }) {
-  const { title, type, salary, deadline } = job || {};
+  const { title, type, salary, deadline, id } = job || {};
 
   return (
     <div className="lws-single-job">
@@ -25,10 +26,12 @@ export default function Job({ job }) {
       </div>
       <div className="mt-5 flex lg:mt-0 lg:ml-4">
         <span className="hidden sm:block">
-          <button type="button" className="lws-edit btn btn-primary">
-            <i className="fa-solid fa-pen text-gray-300 -ml-1 mr-2"></i>
-            Edit
-          </button>
+          <Link to={`/edit-job/${id}`}>
+            <button type="button" className="lws-edit btn btn-primary">
+              <i className="fa-solid fa-pen text-gray-300 -ml-1 mr-2"></i>
+              Edit
+            </button>
+          </Link>
         </span>
 
         <span className="sm:ml-3">
