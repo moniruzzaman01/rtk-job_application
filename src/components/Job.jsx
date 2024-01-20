@@ -1,9 +1,15 @@
 import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { removeAJob } from "../features/jobs/jobsSlice";
 
 export default function Job({ job }) {
   const { title, type, salary, deadline, id } = job || {};
+  const dispatch = useDispatch();
 
+  const handleJobDelete = (id) => {
+    dispatch(removeAJob(id));
+  };
   return (
     <div className="lws-single-job">
       <div className="flex-1 min-w-0">
@@ -35,7 +41,11 @@ export default function Job({ job }) {
         </span>
 
         <span className="sm:ml-3">
-          <button type="button" className="lws-delete btn btn-danger ">
+          <button
+            onClick={() => handleJobDelete(id)}
+            type="button"
+            className="lws-delete btn btn-danger "
+          >
             <i className="fa-solid fa-trash text-gray-300 -ml-1 mr-2"></i>
             Delete
           </button>

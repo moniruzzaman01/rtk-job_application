@@ -19,3 +19,8 @@ export const insertAJob = async (data) => {
   const response = await axiosInstance.post(`/jobs`, data);
   return response.data;
 };
+
+export const deleteAJob = async (jobId) => {
+  const response = await axiosInstance.delete(`/jobs/${jobId}`);
+  return response.data;
+};

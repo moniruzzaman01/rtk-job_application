@@ -1,5 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { fetchAJob, fetchAllJobs, insertAJob, updateJob } from "./jobsAPI";
+import {
+  deleteAJob,
+  fetchAJob,
+  fetchAllJobs,
+  insertAJob,
+  updateJob,
+} from "./jobsAPI";
 
 const initialState = {
   isLoading: false,
@@ -13,8 +19,8 @@ export const loadAllJobs = createAsyncThunk("jobs/loadAllJobs", async () => {
   return jobs;
 });
 
-export const loadAJob = createAsyncThunk("jobs/loadAJob", async () => {
-  const job = await fetchAJob();
+export const loadAJob = createAsyncThunk("jobs/loadAJob", async (jobId) => {
+  const job = await fetchAJob(jobId);
   return job;
 });
 
@@ -28,6 +34,11 @@ export const editJob = createAsyncThunk(
 
 export const addAJob = createAsyncThunk("jobs/addAJob", async (data) => {
   const job = await insertAJob(data);
+  return job;
+});
+
+export const removeAJob = createAsyncThunk("jobs/removeAJob", async (jobId) => {
+  const job = await deleteAJob(jobId);
   return job;
 });
 
@@ -77,12 +88,26 @@ const jobsSlice = createSlice({
         state.isError = false;
       })
       .addCase(addAJob.fulfilled, (state, action) => {
-        console.log(action);
         state.isLoading = false;
         state.isError = false;
         state.jobs.push(action.payload);
+      })
+      // .addCase(addAJob.rejected, (state, action) => {
+      //   state.isLoading = false;
+      //   state.isError = true;
+      //   state.jobs = [];
+      //   state.error = action.error.message;
+      // });
+      .addCase(removeAJob.pending, (state) => {
+        state.isLoading = true;
+        state.isError = false;
+      })
+      .addCase(removeAJob.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.jobs = state.jobs.filter((job) => job.id != action.meta.arg);
       });
-    // .addCase(addAJob.rejected, (state, action) => {
+    // .addCase(removeAJob.rejected, (state, action) => {
     //   state.isLoading = false;
     //   state.isError = true;
     //   state.jobs = [];
